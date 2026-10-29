@@ -1,0 +1,9 @@
+{
+  "options": [
+    {
+      "key": "tile.renderer",
+      "value": "isometric",
+      "name": "collection_settings/isometric"
+    }
+  ]
+}

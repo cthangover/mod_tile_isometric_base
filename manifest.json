@@ -1,0 +1,17 @@
+{
+  "id": "tile_isometric_base",
+  "name": "Isometric Tiles",
+  "version": "1.0.0",
+  "author": "ct",
+  "description": "Draws tile maps at an angle, a grid of 2:1 diamonds, so buildings and trees stand up out of the ground. One of the two views of Tile Rendering.",
+  "category": "visual, engine",
+  "sources": [
+    "src/**/*.cs"
+  ],
+  "test_sources": [
+    "tests/*.cs"
+  ],
+  "depends": [
+    "tile_render_base>=1"
+  ]
+}
