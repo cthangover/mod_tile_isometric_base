@@ -5,6 +5,17 @@ namespace Cthangover.Mods.TileIsometric.Tests
     /// <summary>Ground projection is invertible in every quadrant, before rounding to cells.</summary>
     public class ProjectionTests
     {
+        [ModTest("projection/depth_anchor_preserves_art_geometry")]
+        static void DepthAnchor(ModTestContext ctx)
+        {
+            var projection = new IsometricTileProjection(32);
+            var visual = new Cthangover.Mods.TileRender.TileVisual { Bounds = new Rect2(1, 2, 2, 3), Anchor = new Vector2(2, 5), Upright = true };
+            var before = projection.Place(visual);
+            visual.DrawOrder = Cthangover.Mods.TileRender.TileDrawOrder.ByPosition; visual.SortAnchor = new Vector2(9, 10);
+            var after = projection.Place(visual);
+            ModAssert.True(before.Transform == after.Transform && before.Bounds == after.Bounds, "independent depth control does not shift the image");
+            ModAssert.True(after.DepthSorted && after.Anchor != before.Anchor, "explicit depth anchor changes the sort position");
+        }
         [ModTest("projection/ground_roundtrip_and_elevation")]
         static void GroundRoundtrip(ModTestContext ctx)
         {

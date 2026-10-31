@@ -13,20 +13,21 @@ namespace Cthangover.Mods.TileIsometric
         public TileVisualPlacement Place(TileVisual visual)
         {
             var anchor = TileDrawing.Project(this, visual.Anchor);
+            var sort = TileDrawing.Project(this, visual.SortAnchor ?? visual.Anchor);
             if (visual.WorldQuad is { Length: 4 })
             {
                 var points = new Vector2[4];
                 for (var i = 0; i < 4; i++) points[i] = Project(visual.WorldQuad[i]);
-                return TileVisualPlacement.FromQuad(points, anchor, visual.Upright);
+                return TileVisualPlacement.FromQuad(points, sort, visual.DrawOrder == TileDrawOrder.ByPosition || visual.Upright);
             }
             if (visual.Upright)
             {
                 var rect = new Rect2(anchor + (visual.Bounds.Position - visual.Anchor) * Unit, visual.Bounds.Size * Unit);
                 var points = new[] { rect.Position, rect.Position + new Vector2(rect.Size.X, 0), rect.End,
                     rect.Position + new Vector2(0, rect.Size.Y) };
-                return TileVisualPlacement.FromQuad(points, anchor, true);
+                return TileVisualPlacement.FromQuad(points, sort, true);
             }
-            return TileVisualPlacement.FromQuad(TileDrawing.CellPolygon(this, visual.Bounds), anchor, false);
+            return TileVisualPlacement.FromQuad(TileDrawing.CellPolygon(this, visual.Bounds), sort, visual.DrawOrder == TileDrawOrder.ByPosition);
         }
     }
 }
