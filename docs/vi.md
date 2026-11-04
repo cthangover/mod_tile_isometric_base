@@ -7,7 +7,7 @@ Isometric Tiles vẽ các bản đồ ô ở một góc nghiêng, thành lưới
 ## Khác gì so với chế độ nhìn từ trên
 
 - **Ô hình thoi.** Mỗi ô được vẽ thành hình thoi rộng gấp đôi chiều cao. Lưới logic vẫn vuông: một ô vẫn có bốn ô kề như trước.
-- **Vật thể đứng.** Nhà cửa và các vật thể nhiều ô mà tileset đánh dấu sẽ được vẽ như tranh dựng đứng hoặc vài mặt phẳng, thay vì ô phẳng.
+- **Vật thể đứng.** `Parts` của sprite `rpg_object` chọn hình học `upright`, `ground`, `plane` hoặc `quad`; `Only` giới hạn bộ dựng. Cùng PNG có thể vẽ cả phòng nhìn từ trên và các phần cắt sàn/tường đẳng cự.
 - **Nhân vật** chọn hàng sprite khớp với hướng của mình trên lưới hình thoi.
 - **Nhấp chuột** vào bản đồ sẽ chọn hình thoi dưới con trỏ; trình sửa bản đồ RPG dùng cùng luật đó.
 
@@ -19,7 +19,7 @@ Không đổi: luật đi lại, va chạm, sự kiện, chiến đấu, save, c
 
 - **Phím theo lưới, không theo màn hình.** Lên và xuống (W/S, mũi tên) đi theo một đường chéo của màn hình, trái và phải theo đường chéo kia, vì chúng dịch nhân vật đúng một ô trên lưới vuông.
 - **Rìa bản đồ bị lộ.** Gần góc bản đồ, bạn thấy nền trống ngoài mép hình thoi, như trong hình trên.
-- **Tileset phải được chuẩn bị.** Vật thể chỉ đứng thẳng khi tileset mô tả chúng thành nhóm; ô thường được đặt phẳng trên các hình thoi.
+- **Chuẩn bị hình học.** Khai báo các phần và vùng chiếm ô trong `rpg_object`; hình ảnh không tự xác định mặt tường, va chạm hay điểm neo sắp xếp.
 
 ## Cách bật
 

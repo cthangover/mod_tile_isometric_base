@@ -7,7 +7,7 @@ Isometric Tiles draws tile maps at an angle, as a grid of 2:1 diamonds, so build
 ## What is different from the top-down view
 
 - **Diamond cells.** Each map cell is drawn as a diamond twice as wide as it is tall. The logical grid is still square: a cell has the same four neighbours as before.
-- **Standing objects.** Buildings and other multi-cell objects that a tileset marks for it are drawn as upright pictures or as several flat faces, instead of flat tiles.
+- **Standing objects.** Sprite `Parts` in `rpg_object` select `upright`, `ground`, `plane` or `quad` geometry; `Only` can restrict a part to one renderer. The same PNG can supply a whole top-down room and cropped isometric floor/wall faces.
 - **Characters** pick the sprite row that matches their direction on the diamond grid.
 - **Clicking** on the map selects the diamond under the pointer; the RPG map editor uses the same rule.
 
@@ -19,7 +19,7 @@ What does not change: walking rules, collisions, events, battles, saves, lightin
 
 - **Keys follow the grid, not the screen.** Up and down (W/S, arrows) move along one diagonal of the screen, left and right along the other, because they move the hero one cell on the square grid.
 - **The edges of a map show.** Near a corner of the map you see the empty background beyond the diamond's edge, as in the picture above.
-- **Tilesets must be prepared.** Objects look upright only when the tileset describes them as groups; ordinary tiles are laid flat on the diamonds.
+- **Prepare object geometry.** Define sprite parts and footprints in `rpg_object`; images alone do not specify wall planes, collision or sorting anchors.
 
 ## Turn it on
 

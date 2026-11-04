@@ -7,7 +7,7 @@ Isometric Tiles dibuja los mapas de tiles en ángulo, como una cuadrícula de ro
 ## Qué cambia respecto a la vista superior
 
 - **Casillas de rombo.** Cada casilla del mapa se dibuja como un rombo el doble de ancho que de alto. La cuadrícula lógica sigue siendo cuadrada: una casilla tiene los mismos cuatro vecinos que antes.
-- **Objetos de pie.** Los edificios y demás objetos de varias casillas que el tileset marca como tales se dibujan como imágenes verticales o como varias caras planas, en lugar de tiles planos.
+- **Objetos en relieve.** `Parts` de un sprite `rpg_object` elige geometría `upright`, `ground`, `plane` o `quad`; `Only` limita una parte a un renderizador. Un PNG puede mostrar la habitación entera desde arriba y recortes de suelo y paredes en isométrico.
 - **Los personajes** eligen la fila de sprites que corresponde a su dirección sobre la cuadrícula de rombos.
 - **Al hacer clic** en el mapa se selecciona el rombo bajo el puntero; el editor de mapas RPG usa la misma regla.
 
@@ -19,7 +19,7 @@ Lo que no cambia: las reglas de caminar, las colisiones, los eventos, los combat
 
 - **Las teclas siguen la cuadrícula, no la pantalla.** Arriba y abajo (W/S, flechas) avanzan por una diagonal de la pantalla, izquierda y derecha por la otra, porque mueven al héroe una casilla de la cuadrícula cuadrada.
 - **Se notan los bordes del mapa.** Cerca de una esquina se ve el fondo vacío más allá del borde del rombo, como en la imagen de arriba.
-- **Los tilesets deben estar preparados.** Los objetos solo se ven de pie cuando el tileset los describe como grupos; los tiles normales se colocan planos sobre los rombos.
+- **Prepare la geometría.** Defina partes y huellas en `rpg_object`; una imagen no define los planos de pared, las colisiones ni los anclajes de ordenación.
 
 ## Actívalo
 
