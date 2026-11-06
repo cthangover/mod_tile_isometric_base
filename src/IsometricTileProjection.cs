@@ -9,6 +9,8 @@ namespace Cthangover.Mods.TileIsometric
         public IsometricTileProjection(int size) { Unit = size > 0 ? size : throw new System.ArgumentOutOfRangeException(nameof(size)); }
         public Vector2 Project(Vector3 p) => new((p.X - p.Y) * Unit, (p.X + p.Y) * Unit * 0.5f - p.Z * Unit);
         public Vector2 Unproject(Vector2 p) => new((p.X * 0.5f + p.Y) / Unit, (p.Y - p.X * 0.5f) / Unit);
+        /// <summary>Feet at the diamond's centre: the bottom-centre anchor sits on the lower edge, half a cell lower than the centre.</summary>
+        public Vector2 ActorAnchor(Vector2 anchor) => anchor - new Vector2(0, 0.5f);
         public int CharsetRow(int facing) => facing switch { 0 => 1, 1 => 3, 2 => 0, _ => 2 };
         public TileVisualPlacement Place(TileVisual visual)
         {
